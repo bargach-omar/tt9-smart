@@ -1,0 +1,59 @@
+package com.tt9smart.ui;
+
+import android.view.HapticFeedbackConstants;
+import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.tt9smart.preferences.settings.SettingsStore;
+import com.tt9smart.ui.main.keys.BaseClickableKey;
+import com.tt9smart.ui.main.keys.SoftKeyNumber;
+import com.tt9smart.util.Logger;
+import com.tt9smart.util.sys.DeviceInfo;
+
+public record Vibration(@NonNull SettingsStore settings, @Nullable View view) {
+	public static int getNoVibration() {
+		return -1;
+	}
+
+	public static int getPressVibration(BaseClickableKey key) {
+		return key instanceof SoftKeyNumber ? HapticFeedbackConstants.KEYBOARD_TAP : HapticFeedbackConstants.VIRTUAL_KEY;
+	}
+
+	public static int getHoldVibration() {
+		if (DeviceInfo.AT_LEAST_ANDROID_11) {
+			return HapticFeedbackConstants.CONFIRM;
+		} else {
+			return HapticFeedbackConstants.VIRTUAL_KEY;
+		}
+	}
+
+	public static int getReleaseVibration() {
+		if (DeviceInfo.AT_LEAST_ANDROID_8_1) {
+			return HapticFeedbackConstants.KEYBOARD_RELEASE;
+		} else {
+			return HapticFeedbackConstants.VIRTUAL_KEY;
+		}
+	}
+
+	public void vibrate(int vibrationType) {
+		if (view == null || !settings.getHapticFeedback()) {
+			return;
+		}
+
+		try {
+			view.performHapticFeedback(vibrationType, HapticFeedbackConstants.FLAG_IGNORE_VIEW_SETTING);
+		} catch (Exception e) {
+			// Some Xiaomi and Poco devices with Android 16 crash when trying to vibrate.
+			// This is a workaround to prevent the app from crashing on such devices.
+			settings.setHapticFeedbackProblematic(true);
+
+			Logger.e(getClass().getSimpleName(), "Failed to vibrate, disabling haptic feedback. " + e);
+		}
+	}
+
+	public void vibrate() {
+		vibrate(getPressVibration(null));
+	}
+}

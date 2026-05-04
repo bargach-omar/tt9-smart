@@ -22,5 +22,5 @@
 
 <input-method
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:settingsActivity="io.github.sspanak.tt9.preferences.PreferencesActivity">
+	android:settingsActivity="com.tt9smart.preferences.PreferencesActivity">
 </input-method>

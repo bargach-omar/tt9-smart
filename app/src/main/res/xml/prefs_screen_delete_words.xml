@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" android:orderingFromXml="true">
-	<io.github.sspanak.tt9.preferences.screens.deleteWords.PreferenceSearchWords
+	<com.tt9smart.preferences.screens.deleteWords.PreferenceSearchWords
 		android:key="dictionary_delete_words_search" />
 
 	<PreferenceCategory

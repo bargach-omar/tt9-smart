@@ -1,0 +1,15 @@
+locale: fr-FR
+dictionaryFile: fr-utf8.csv
+iconABC: ic_lang_latin
+iconT9: ic_lang_fr
+layout:
+  - [SPECIAL]
+  - [PUNCTUATION_FR]
+  - [a, b, c, à, â, æ, ç]
+  - [d, e, f, é, è, ê, ë]
+  - [g, h, i, î, ï]
+  - [j, k, l]
+  - [m, n, o, ô, œ]
+  - [p, q, r, s]
+  - [t, u, v, ù, û, ü]
+  - [w, x, y, z, ÿ]

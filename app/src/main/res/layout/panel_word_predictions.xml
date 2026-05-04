@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/word_predictions_bar"
+	android:orientation="horizontal"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:visibility="gone">
+
+	<TextView
+		android:id="@+id/word_prediction_0"
+		android:layout_width="0dp"
+		android:layout_weight="1"
+		android:layout_height="wrap_content"
+		android:gravity="center"
+		android:paddingLeft="@dimen/main_small_suggestion_spacing_horizontal"
+		android:paddingRight="@dimen/main_small_suggestion_spacing_horizontal"
+		android:paddingTop="4dp"
+		android:paddingBottom="4dp"
+		android:textSize="@dimen/status_bar_text_size"
+		android:text="" />
+
+	<View
+		android:layout_width="1dp"
+		android:layout_height="match_parent" />
+
+	<TextView
+		android:id="@+id/word_prediction_1"
+		android:layout_width="0dp"
+		android:layout_weight="1"
+		android:layout_height="wrap_content"
+		android:gravity="center"
+		android:paddingLeft="@dimen/main_small_suggestion_spacing_horizontal"
+		android:paddingRight="@dimen/main_small_suggestion_spacing_horizontal"
+		android:paddingTop="4dp"
+		android:paddingBottom="4dp"
+		android:textSize="@dimen/status_bar_text_size"
+		android:text="" />
+
+	<View
+		android:layout_width="1dp"
+		android:layout_height="match_parent" />
+
+	<TextView
+		android:id="@+id/word_prediction_2"
+		android:layout_width="0dp"
+		android:layout_weight="1"
+		android:layout_height="wrap_content"
+		android:gravity="center"
+		android:paddingLeft="@dimen/main_small_suggestion_spacing_horizontal"
+		android:paddingRight="@dimen/main_small_suggestion_spacing_horizontal"
+		android:paddingTop="4dp"
+		android:paddingBottom="4dp"
+		android:textSize="@dimen/status_bar_text_size"
+		android:text="" />
+
+</LinearLayout>

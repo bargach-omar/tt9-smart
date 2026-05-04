@@ -1,0 +1,54 @@
+package com.tt9smart.languages;
+
+import androidx.annotation.NonNull;
+
+import java.util.ArrayList;
+import java.util.Locale;
+
+import com.tt9smart.ime.modes.helpers.Sequences;
+import com.tt9smart.util.TextTools;
+import com.tt9smart.util.chars.Characters;
+
+public class EmojiLanguage extends Language {
+	private final Sequences seq;
+
+	public EmojiLanguage(Sequences sequences) {
+		id = Integer.parseInt(new Sequences().EMOJI_SEQUENCE); // always use the unprefixed sequence for ID
+		locale = Locale.ROOT;
+		abcString = "emoji";
+		code = "emj";
+		currency = "";
+		name = "Emoji";
+		seq = sequences == null ? new Sequences() : sequences;
+	}
+
+	@NonNull
+	@Override
+	public String getDigitSequenceForWord(String word) {
+		return isValidWord(word) && Characters.isBuiltInEmoji(word) ? seq.EMOJI_SEQUENCE : "";
+	}
+
+	@NonNull
+	public ArrayList<String> getKeyCharacters(int key, int characterGroup) {
+		return key == 1 && characterGroup >= 0 ? Characters.getEmoji(characterGroup) : new ArrayList<>();
+	}
+
+	@NonNull
+	@Override
+	public ArrayList<String> getKeyCharacters(int key) {
+		return getKeyCharacters(key, 0);
+	}
+
+	@Override
+	public boolean isValidWord(String word) {
+		return TextTools.isGraphic(word);
+	}
+
+	public static String validateEmojiSequence(@NonNull Sequences seq, @NonNull String sequence, int next) {
+		if (sequence.startsWith(seq.EMOJI_SEQUENCE) && (next > 1 || sequence.length() - seq.PUNCTUATION_PREFIX_LENGTH == Characters.getMaxEmojiLevel() + 1)) {
+			return sequence;
+		} else {
+			return sequence + next;
+		}
+	}
+}

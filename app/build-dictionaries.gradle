@@ -127,7 +127,10 @@ def isDictionaryUpToDate(File definition, File csvDictionary, String dictionaryP
 	Properties props = new Properties()
 	dictionaryProperties.withInputStream { stream -> props.load(stream) }
 
-	return props.getProperty("hash", "") == DictionaryTools.getLanguageHash(definition, csvDictionary)
+	// "generated" means the props.yml was pre-generated from git metadata — treat as up-to-date
+	def storedHash = props.getProperty("hash", "")
+	if (storedHash == "generated") return true
+	return storedHash == DictionaryTools.getLanguageHash(definition, csvDictionary)
 }
 
 

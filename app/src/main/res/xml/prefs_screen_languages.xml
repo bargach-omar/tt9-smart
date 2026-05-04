@@ -2,7 +2,7 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto" app:orderingFromXml="true">
 
 	<Preference
-		app:fragment="io.github.sspanak.tt9.preferences.screens.languageSelection.LanguageSelectionScreen"
+		app:fragment="com.tt9smart.preferences.screens.languageSelection.LanguageSelectionScreen"
 		app:key="pref_languages"
 		app:title="@string/pref_choose_languages" />
 
@@ -23,14 +23,14 @@
 		app:key="dictionary_truncate"
 		app:title="@string/dictionary_truncate_title" />
 
-	<io.github.sspanak.tt9.preferences.screens.languages.QuickSwitchLanguagePreference />
+	<com.tt9smart.preferences.screens.languages.QuickSwitchLanguagePreference />
 
 	<PreferenceCategory
 		app:key="category_added_words"
 		app:title="@string/pref_category_custom_words"
 		app:singleLineTitle="true">
 
-		<io.github.sspanak.tt9.preferences.screens.languages.SwitchAddWordsWithoutConfirmation />
+		<com.tt9smart.preferences.screens.languages.SwitchAddWordsWithoutConfirmation />
 
 		<Preference
 			app:key="dictionary_import_custom"
@@ -42,7 +42,7 @@
 			app:title="@string/dictionary_export_custom_words" />
 
 		<Preference
-			app:fragment="io.github.sspanak.tt9.preferences.DeleteWordsScreen"
+			app:fragment="com.tt9smart.preferences.DeleteWordsScreen"
 			app:key="screen_delete_words"
 			app:title="@string/delete"
 			app:summary="@string/delete_words_link_summary"/>

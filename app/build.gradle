@@ -122,11 +122,12 @@ android {
 		release {
 			buildConfigField 'String', 'VERSION_FULL', "\"${getVersionString('release')}\""
 
-			debuggable = false
+			debuggable = true
 			jniDebuggable = false
 			minifyEnabled = true
 			shrinkResources = true
 			proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+			signingConfig signingConfigs.debug
 		}
 	}
 	compileOptions {
@@ -198,4 +199,5 @@ dependencies {
 	implementation 'androidx.preference:preference:1.2.1'
 	implementation 'com.google.android.material:material:1.13.0'
 	premiumImplementation 'com.android.billingclient:billing:8.3.0'
+	testImplementation 'junit:junit:4.13.2'
 }

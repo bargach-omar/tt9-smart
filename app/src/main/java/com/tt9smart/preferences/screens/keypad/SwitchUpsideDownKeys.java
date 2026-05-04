@@ -1,0 +1,29 @@
+package com.tt9smart.preferences.screens.keypad;
+
+import android.content.Context;
+import android.util.AttributeSet;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.preference.SwitchPreferenceCompat;
+
+import com.tt9smart.R;
+import com.tt9smart.util.sys.HardwareInfo;
+
+public class SwitchUpsideDownKeys extends SwitchPreferenceCompat {
+	public static final String NAME = "pref_upside_down_keys";
+	public static final boolean DEFAULT = HardwareInfo.IS_EMULATOR;
+
+	public SwitchUpsideDownKeys(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) { super(context, attrs, defStyleAttr, defStyleRes); init(); }
+	public SwitchUpsideDownKeys(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) { super(context, attrs, defStyleAttr); init(); }
+	public SwitchUpsideDownKeys(@NonNull Context context, @Nullable AttributeSet attrs) { super(context, attrs); init(); }
+	public SwitchUpsideDownKeys(@NonNull Context context) { super(context); init(); }
+
+	private void init() {
+		setKey(NAME);
+		setTitle(R.string.pref_upside_down_keys);
+		setSummary(R.string.pref_upside_down_keys_summary);
+		setDefaultValue(DEFAULT);
+		setChecked(getPersistedBoolean(DEFAULT));
+	}
+}

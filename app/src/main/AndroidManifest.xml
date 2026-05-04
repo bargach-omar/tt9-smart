@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:tools="http://schemas.android.com/tools"
-	android:versionCode="1539"
-	android:versionName="61.0"
+	android:versionCode="1549"
+	android:versionName="1.0.0"
 	xmlns:android="http://schemas.android.com/apk/res/android">
 
 	<uses-permission android:name="android.permission.POST_NOTIFICATIONS"/> <!-- allows displaying notifications on Android >= 13 -->
@@ -22,7 +22,7 @@
 		android:theme="@style/TTheme"
 		android:supportsRtl="true">
 
-		<service android:name="io.github.sspanak.tt9.ime.TraditionalT9" android:permission="android.permission.BIND_INPUT_METHOD"
+		<service android:name="com.tt9smart.ime.TraditionalT9" android:permission="android.permission.BIND_INPUT_METHOD"
 			android:exported="true">
 			<intent-filter>
 				<action android:name="android.view.InputMethod"/>
@@ -31,14 +31,14 @@
 		</service>
 
 		<provider
-			android:name="io.github.sspanak.tt9.hacks.EarlyInitProvider"
+			android:name="com.tt9smart.hacks.EarlyInitProvider"
 			android:authorities="${applicationId}.earlyinitprovider"
 			android:exported="false"
 			android:multiprocess="false" />
 
 		<activity
 			android:label="@string/app_name_short"
-			android:name="io.github.sspanak.tt9.preferences.PreferencesActivity"
+			android:name="com.tt9smart.preferences.PreferencesActivity"
 			android:exported="true"
 			android:theme="@style/TTheme.Preferences">
 			<intent-filter>
@@ -50,12 +50,12 @@
 		<activity
 			android:excludeFromRecents="true"
 			android:label=""
-			android:name="io.github.sspanak.tt9.ui.dialogs.AutoUpdateMonologActivity"
+			android:name="com.tt9smart.ui.dialogs.AutoUpdateMonologActivity"
 			android:theme="@style/TTheme.AddWord" />
 
 		<activity
 			android:label="@string/pref_help"
-			android:name="io.github.sspanak.tt9.preferences.HelpActivity"
+			android:name="com.tt9smart.preferences.HelpActivity"
 			android:exported="true"
 			android:theme="@style/TTheme.Preferences">
 			<intent-filter>
@@ -66,7 +66,7 @@
 
 		<activity
 			android:label="Test Input"
-			android:name="io.github.sspanak.tt9.preferences.screens.debug.TestInputActivity"
+			android:name="com.tt9smart.preferences.screens.debug.TestInputActivity"
 			android:exported="true"
 			android:theme="@style/TTheme.Preferences">
 			<intent-filter>
@@ -77,7 +77,7 @@
 
 		<activity
 			android:label="Log Messages"
-			android:name="io.github.sspanak.tt9.preferences.LogsActivity"
+			android:name="com.tt9smart.preferences.LogsActivity"
 			android:exported="true"
 			android:theme="@style/TTheme.Preferences">
 			<intent-filter>
@@ -88,7 +88,7 @@
 
 		<activity
 			android:label="@string/pref_privacy_policy"
-			android:name="io.github.sspanak.tt9.preferences.PrivacyPolicyActivity"
+			android:name="com.tt9smart.preferences.PrivacyPolicyActivity"
 			android:exported="true"
 			android:theme="@style/TTheme.Preferences">
 			<intent-filter>
@@ -100,19 +100,19 @@
 		<activity
 			android:excludeFromRecents="true"
 			android:label=""
-			android:name="io.github.sspanak.tt9.ui.dialogs.RequestPermissionDialog"
+			android:name="com.tt9smart.ui.dialogs.RequestPermissionDialog"
 			android:theme="@style/TTheme.AddWord" />
 
 		<activity
 			android:excludeFromRecents="true"
 			android:label=""
-			android:name="io.github.sspanak.tt9.ui.dialogs.TutorialDialog"
+			android:name="com.tt9smart.ui.dialogs.TutorialDialog"
 			android:theme="@style/TTheme" />
 
 		<activity
 			android:excludeFromRecents="true"
 			android:label=""
-			android:name="io.github.sspanak.tt9.ime.voice.VoiceInputPickerActivity"
+			android:name="com.tt9smart.ime.voice.VoiceInputPickerActivity"
 			android:theme="@style/TTheme.AddWord" />
 	</application>
 </manifest>

@@ -5,17 +5,17 @@
 
 	<PreferenceCategory android:title="@string/pref_category_typing">
 		<Preference
-			android:fragment="io.github.sspanak.tt9.preferences.screens.modeAbc.ModeAbcScreen"
+			android:fragment="com.tt9smart.preferences.screens.modeAbc.ModeAbcScreen"
 			android:key="screen_abc_mode"
 			android:title="@string/pref_category_abc_mode" />
 
 		<Preference
-			android:fragment="io.github.sspanak.tt9.preferences.screens.modePredictive.ModePredictiveScreen"
+			android:fragment="com.tt9smart.preferences.screens.modePredictive.ModePredictiveScreen"
 			android:key="screen_predictive_mode"
 			android:title="@string/pref_category_predictive_mode" />
 
 		<Preference
-			android:fragment="io.github.sspanak.tt9.preferences.screens.punctuation.PunctuationScreen"
+			android:fragment="com.tt9smart.preferences.screens.punctuation.PunctuationScreen"
 			android:key="screen_punctuation"
 			android:title="@string/pref_category_punctuation_order" />
 
@@ -33,16 +33,16 @@
 	</PreferenceCategory>
 
 	<PreferenceCategory android:title="@string/pref_category_keypad_onscreen" android:key="category_virtual_keys">
-		<io.github.sspanak.tt9.preferences.screens.keypad.SwitchHapticFeedback />
+		<com.tt9smart.preferences.screens.keypad.SwitchHapticFeedback />
 	</PreferenceCategory>
 
 	<PreferenceCategory android:title="@string/pref_category_keypad_hardware">
 		<Preference
-			android:fragment="io.github.sspanak.tt9.preferences.screens.hotkeys.HotkeysScreen"
+			android:fragment="com.tt9smart.preferences.screens.hotkeys.HotkeysScreen"
 			android:key="screen_hotkeys"
 			android:title="@string/pref_category_function_keys" />
 
-		<io.github.sspanak.tt9.preferences.screens.keypad.DropDownKeyPadDebounceTime android:title="@string/pref_hack_key_pad_debounce_time" />
+		<com.tt9smart.preferences.screens.keypad.DropDownKeyPadDebounceTime android:title="@string/pref_hack_key_pad_debounce_time" />
 
 		<SwitchPreferenceCompat
 			android:defaultValue="false"
@@ -50,7 +50,7 @@
 			android:summary="@string/pref_hardware_key_visual_feedback_summary"
 			android:title="@string/pref_hardware_key_visual_feedback" />
 
-		<io.github.sspanak.tt9.preferences.screens.keypad.SwitchUpsideDownKeys />
+		<com.tt9smart.preferences.screens.keypad.SwitchUpsideDownKeys />
 	</PreferenceCategory>
 
 	<PreferenceCategory android:title="@string/pref_category_hacks">

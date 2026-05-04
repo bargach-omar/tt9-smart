@@ -5,7 +5,7 @@
 	<!-- 1-4-7 -->
 	<LinearLayout style="@style/TTheme.Numpad.Column" android:id="@+id/numpad_column_1">
 		<RelativeLayout style="@style/TTheme.Numpad.Key.Overlay.Wrapper">
-			<io.github.sspanak.tt9.ui.main.keys.SoftKeyNumber1
+			<com.tt9smart.ui.main.keys.SoftKeyNumber1
 				style="@style/TTheme.Numpad.Key.Number"
 				android:id="@+id/soft_key_1"
 				tools:ignore="Instantiatable" />
@@ -15,7 +15,7 @@
 		</RelativeLayout>
 
 		<RelativeLayout style="@style/TTheme.Numpad.Key.Overlay.Wrapper">
-			<io.github.sspanak.tt9.ui.main.keys.SoftKeyNumber2to9
+			<com.tt9smart.ui.main.keys.SoftKeyNumber2to9
 				style="@style/TTheme.Numpad.Key.Number"
 				android:id="@+id/soft_key_4"
 				tools:ignore="Instantiatable" />
@@ -25,7 +25,7 @@
 		</RelativeLayout>
 
 		<RelativeLayout style="@style/TTheme.Numpad.Key.Overlay.Wrapper">
-			<io.github.sspanak.tt9.ui.main.keys.SoftKeyNumber2to9
+			<com.tt9smart.ui.main.keys.SoftKeyNumber2to9
 				style="@style/TTheme.Numpad.Key.Number"
 				android:id="@+id/soft_key_7" />
 			<include layout="@layout/key_overlay_icons" />
@@ -35,7 +35,7 @@
 
 		<LinearLayout style="@style/TTheme.Numpad.CentralBlock.TwoKeyBlock" android:id="@+id/numpad_two_key_block_left">
 			<RelativeLayout style="@style/TTheme.Numpad.Key.Overlay.Wrapper.HalfWidth">
-				<io.github.sspanak.tt9.ui.main.keys.SoftKeyTextLeftPremium
+				<com.tt9smart.ui.main.keys.SoftKeyTextLeftPremium
 					style="@style/TTheme.Numpad.Key.Number"
 					android:id="@+id/soft_key_text_1" />
 				<include layout="@layout/key_overlay_icons" />
@@ -47,7 +47,7 @@
 	<!-- 2-5-8 -->
 	<LinearLayout style="@style/TTheme.Numpad.Column" android:id="@+id/numpad_column_2">
 		<RelativeLayout style="@style/TTheme.Numpad.Key.Overlay.Wrapper">
-			<io.github.sspanak.tt9.ui.main.keys.SoftKeyNumber2to9
+			<com.tt9smart.ui.main.keys.SoftKeyNumber2to9
 				style="@style/TTheme.Numpad.Key.Number"
 				android:id="@+id/soft_key_2" />
 			<include layout="@layout/key_overlay_icons" />
@@ -56,7 +56,7 @@
 		</RelativeLayout>
 
 		<RelativeLayout style="@style/TTheme.Numpad.Key.Overlay.Wrapper">
-			<io.github.sspanak.tt9.ui.main.keys.SoftKeyNumber2to9
+			<com.tt9smart.ui.main.keys.SoftKeyNumber2to9
 				style="@style/TTheme.Numpad.Key.Number"
 				android:id="@+id/soft_key_5" />
 			<include layout="@layout/key_overlay_icons" />
@@ -65,7 +65,7 @@
 		</RelativeLayout>
 
 		<RelativeLayout style="@style/TTheme.Numpad.Key.Overlay.Wrapper">
-			<io.github.sspanak.tt9.ui.main.keys.SoftKeyNumber2to9
+			<com.tt9smart.ui.main.keys.SoftKeyNumber2to9
 				style="@style/TTheme.Numpad.Key.Number"
 				android:id="@+id/soft_key_8" />
 			<include layout="@layout/key_overlay_icons" />
@@ -74,7 +74,7 @@
 		</RelativeLayout>
 
 		<RelativeLayout style="@style/TTheme.Numpad.Key.Overlay.Wrapper">
-			<io.github.sspanak.tt9.ui.main.keys.SoftKeyNumber0
+			<com.tt9smart.ui.main.keys.SoftKeyNumber0
 				style="@style/TTheme.Numpad.Key.Number"
 				android:id="@+id/soft_key_0"
 				tools:ignore="Instantiatable" />
@@ -89,7 +89,7 @@
 	<!-- 3-6-9 -->
 	<LinearLayout style="@style/TTheme.Numpad.Column" android:id="@+id/numpad_column_3">
 		<RelativeLayout style="@style/TTheme.Numpad.Key.Overlay.Wrapper">
-			<io.github.sspanak.tt9.ui.main.keys.SoftKeyNumber2to9
+			<com.tt9smart.ui.main.keys.SoftKeyNumber2to9
 				style="@style/TTheme.Numpad.Key.Number"
 				android:id="@+id/soft_key_3" />
 			<include layout="@layout/key_overlay_icons" />
@@ -98,7 +98,7 @@
 		</RelativeLayout>
 
 		<RelativeLayout style="@style/TTheme.Numpad.Key.Overlay.Wrapper">
-			<io.github.sspanak.tt9.ui.main.keys.SoftKeyNumber2to9
+			<com.tt9smart.ui.main.keys.SoftKeyNumber2to9
 				style="@style/TTheme.Numpad.Key.Number"
 				android:id="@+id/soft_key_6" />
 			<include layout="@layout/key_overlay_icons" />
@@ -107,7 +107,7 @@
 		</RelativeLayout>
 
 		<RelativeLayout style="@style/TTheme.Numpad.Key.Overlay.Wrapper">
-			<io.github.sspanak.tt9.ui.main.keys.SoftKeyNumber2to9
+			<com.tt9smart.ui.main.keys.SoftKeyNumber2to9
 				style="@style/TTheme.Numpad.Key.Number"
 				android:id="@+id/soft_key_9" />
 			<include layout="@layout/key_overlay_icons" />
@@ -117,7 +117,7 @@
 
 		<LinearLayout style="@style/TTheme.Numpad.CentralBlock.TwoKeyBlock" android:id="@+id/numpad_two_key_block_right">
 			<RelativeLayout style="@style/TTheme.Numpad.Key.Overlay.Wrapper.HalfWidth">
-				<io.github.sspanak.tt9.ui.main.keys.SoftKeyTextRightPremium
+				<com.tt9smart.ui.main.keys.SoftKeyTextRightPremium
 					style="@style/TTheme.Numpad.Key.Number"
 					android:id="@+id/soft_key_text_2" />
 				<include layout="@layout/key_overlay_icons" />

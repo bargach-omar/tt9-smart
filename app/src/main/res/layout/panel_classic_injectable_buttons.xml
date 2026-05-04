@@ -6,7 +6,7 @@
 	android:layout_height="0dp"
 	android:visibility="gone">
 	<RelativeLayout style="@style/TTheme.Numpad.Key.Overlay.Wrapper.HalfWidth" android:id="@+id/soft_key_wrapper_shift">
-		<io.github.sspanak.tt9.ui.main.keys.SoftKeyShift
+		<com.tt9smart.ui.main.keys.SoftKeyShift
 			style="@style/TTheme.Numpad.Key.Large"
 			android:id="@+id/soft_key_shift"
 			tools:ignore="Instantiatable" />
@@ -14,7 +14,7 @@
 	</RelativeLayout>
 
 	<RelativeLayout style="@style/TTheme.Numpad.Key.Overlay.Wrapper.HalfWidth" android:id="@+id/soft_key_wrapper_lf4">
-		<io.github.sspanak.tt9.ui.main.keys.SoftKeyLF4
+		<com.tt9smart.ui.main.keys.SoftKeyLF4
 			style="@style/TTheme.Numpad.Key.LF4"
 			android:id="@+id/soft_key_lf4"
 			tools:ignore="Instantiatable" />

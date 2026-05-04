@@ -1,0 +1,54 @@
+package com.tt9smart.ime.voice;
+
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.speech.SpeechRecognizer;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import java.util.List;
+
+import com.tt9smart.languages.Language;
+import com.tt9smart.util.sys.DeviceInfo;
+
+public class SpeechRecognizerSupportLegacy {
+	SpeechRecognizerSupportLegacy() {}
+
+	SpeechRecognizerSupportLegacy setLanguage(@Nullable Language l) { return this; }
+
+	boolean isAlternativeAvailable(@NonNull Context context) {
+		final List<ResolveInfo> resolveInfo = context.getPackageManager().queryIntentActivities(
+			VoiceInputOps.createIntent(null),
+			PackageManager.MATCH_DEFAULT_ONLY
+		);
+
+		final String google1 = "com.google.android.tts";
+		final String google2 = "com.google.android.googlequicksearchbox";
+
+		for (ResolveInfo info : resolveInfo) {
+			if (
+				info != null
+				&& info.activityInfo != null
+				&& !google1.equals(info.activityInfo.packageName)
+				&& !google2.equals(info.activityInfo.packageName)
+			) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	boolean isGoogleOfflineRecognitionAvailable(@NonNull Context context) {
+		return DeviceInfo.AT_LEAST_ANDROID_12 && SpeechRecognizer.isOnDeviceRecognitionAvailable(context);
+	}
+
+	boolean isGoogleOnlineRecognitionAvailable(@NonNull Context context) {
+		return SpeechRecognizer.isRecognitionAvailable(context);
+	}
+
+	boolean isLanguageSupportedOffline(@NonNull Context c, @Nullable Language l) { return false; }
+	void checkOfflineSupport(@NonNull Context c, @NonNull Runnable onSupportChecked) { onSupportChecked.run(); }
+}

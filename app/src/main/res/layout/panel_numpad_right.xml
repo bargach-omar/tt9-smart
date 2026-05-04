@@ -6,13 +6,13 @@
 	android:id="@+id/numpad_column_fn_right">
 
 	<RelativeLayout style="@style/TTheme.Numpad.Key.Overlay.Wrapper" android:id="@+id/soft_key_wrapper_5">
-		<io.github.sspanak.tt9.ui.main.keys.SoftKeyBackspace
+		<com.tt9smart.ui.main.keys.SoftKeyBackspace
 			style="@style/TTheme.Numpad.Key.Large"
 			android:id="@+id/soft_key_numpad_backspace" />
 	</RelativeLayout>
 
 	<RelativeLayout style="@style/TTheme.Numpad.Key.Overlay.Wrapper" android:id="@+id/soft_key_wrapper_6">
-		<io.github.sspanak.tt9.ui.main.keys.SoftKeyFilter
+		<com.tt9smart.ui.main.keys.SoftKeyFilter
 			style="@style/TTheme.Numpad.Key.Large"
 			android:id="@+id/soft_key_filter"
 			tools:ignore="Instantiatable" />
@@ -20,7 +20,7 @@
 	</RelativeLayout>
 
 	<RelativeLayout style="@style/TTheme.Numpad.Key.Overlay.Wrapper" android:id="@+id/soft_key_wrapper_7">
-		<io.github.sspanak.tt9.ui.main.keys.SoftKeyRF3
+		<com.tt9smart.ui.main.keys.SoftKeyRF3
 			style="@style/TTheme.Numpad.Key.Large"
 			android:id="@+id/soft_key_rf3"
 			tools:ignore="Instantiatable" />
@@ -28,7 +28,7 @@
 	</RelativeLayout>
 
 	<RelativeLayout style="@style/TTheme.Numpad.Key.Overlay.Wrapper" android:id="@+id/soft_key_wrapper_8">
-		<io.github.sspanak.tt9.ui.main.keys.SoftKeyOk
+		<com.tt9smart.ui.main.keys.SoftKeyOk
 			style="@style/TTheme.Numpad.Key.OK"
 			android:id="@+id/soft_key_numpad_ok"
 			tools:ignore="Instantiatable" />

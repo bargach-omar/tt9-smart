@@ -8,27 +8,27 @@
 		app:title="@string/pref_help">
 		<intent
 			android:action="android.intent.action.VIEW"
-			android:targetPackage="io.github.sspanak.tt9"
-			android:targetClass="io.github.sspanak.tt9.preferences.HelpActivity" />
+			android:targetPackage="com.tt9smart"
+			android:targetClass="com.tt9smart.preferences.HelpActivity" />
 	</Preference>
 
 	<Preference
-		app:fragment="io.github.sspanak.tt9.preferences.AppearanceScreen"
+		app:fragment="com.tt9smart.preferences.AppearanceScreen"
 		app:key="screen_appearance"
 		app:title="@string/pref_category_appearance" />
 
 	<Preference
-		app:fragment="io.github.sspanak.tt9.preferences.LanguagesScreen"
+		app:fragment="com.tt9smart.preferences.LanguagesScreen"
 		app:key="screen_languages"
 		app:title="@string/pref_choose_languages" />
 
 	<Preference
-		app:fragment="io.github.sspanak.tt9.preferences.KeyPadScreen"
+		app:fragment="com.tt9smart.preferences.KeyPadScreen"
 		app:key="screen_keypad"
 		app:title="@string/pref_category_keypad" />
 
 	<Preference
-		app:fragment="io.github.sspanak.tt9.preferences.SetupScreen"
+		app:fragment="com.tt9smart.preferences.SetupScreen"
 		app:key="screen_setup"
 		app:title="@string/pref_category_setup" />
 
@@ -36,7 +36,7 @@
 		app:title="@string/pref_category_about"
 		app:singleLineTitle="true">
 
-		<io.github.sspanak.tt9.preferences.screens.main.ProfitPreference
+		<com.tt9smart.preferences.screens.main.ProfitPreference
 			app:key="screen_profit"
 			app:isPreferenceVisible="false" />
 
@@ -46,8 +46,8 @@
 			app:summary="@string/english_only">
 			<intent
 				android:action="android.intent.action.VIEW"
-				android:targetPackage="io.github.sspanak.tt9"
-				android:targetClass="io.github.sspanak.tt9.preferences.PrivacyPolicyActivity" />
+				android:targetPackage="com.tt9smart"
+				android:targetClass="com.tt9smart.preferences.PrivacyPolicyActivity" />
 		</Preference>
 
 		<Preference
