@@ -200,10 +200,8 @@ abstract public class SuggestionHandler extends TypingHandler {
 
 		// either accept the first one automatically (when switching from punctuation to text
 		// or vice versa), or schedule auto-accept in N seconds (in ABC mode)
-		// In SmartBar mode, ABC letters are never auto-accepted so the cycling bar stays visible.
 		int autoAcceptTimeout = mInputMode.getAutoAcceptTimeout();
 		if (settings.isMainLayoutSmartBar() && InputModeKind.isABC(mInputMode)) {
-			autoAcceptTimeout = -1;
 			suggestionOps.setBarVisible(!suggestions.isEmpty());
 		}
 		if (suggestionOps.scheduleDelayedAccept(autoAcceptTimeout)) {
@@ -434,10 +432,19 @@ abstract public class SuggestionHandler extends TypingHandler {
 		}
 
 		// Insert the word (mirroring suggestionOps.commitCurrent which runs before onAcceptSuggestionManually)
-		appHacks.setComposingText(word);
+		appHacks.setComposingText(matchPrefixCase(mLanguage, prefix, word));
 		textField.finishComposingText();
 
 		onAcceptSuggestionManually(word, KeyEvent.KEYCODE_ENTER);
+	}
+
+
+	private static String matchPrefixCase(@Nullable com.tt9smart.languages.Language language, @NonNull String prefix, @NonNull String word) {
+		if (prefix.isEmpty() || language == null) return word;
+		java.util.Locale locale = language.getLocale();
+		if (prefix.equals(prefix.toUpperCase(locale))) return word.toUpperCase(locale);
+		if (Character.isUpperCase(prefix.charAt(0))) return Character.toUpperCase(word.charAt(0)) + word.substring(1);
+		return word;
 	}
 
 

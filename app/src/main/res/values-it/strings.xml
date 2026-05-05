@@ -146,7 +146,7 @@
 	<string name="dictionary_update_message">Aggiornamento del dizionario disponibile per \"%1$s\".</string>
 	<string name="dictionary_update_update">Carica</string>
 	<string name="donate_title">Donare</string>
-	<string name="donate_summary">Se ti piace %1$s, puoi offrirmi una birra.</string>
+	<string name="donate_summary">Se ti piace %1$s, puoi offrirmi un caffè.</string>
 	<string name="pref_drag_resize_summary">Trascinare la barra di stato o il tasto Impostazioni per minimizzare la tastiera o regolarne la posizione sullo schermo.</string>
 	<string name="pref_double_tap_resize_summary">Toccare due volte la barra di stato per ingrandire o ridurre la tastiera quando non vengono mostrati suggerimenti.</string>
 	<string name="pref_double_zero_char">Simbolo quando si preme due volte il tasto \"0\"</string>

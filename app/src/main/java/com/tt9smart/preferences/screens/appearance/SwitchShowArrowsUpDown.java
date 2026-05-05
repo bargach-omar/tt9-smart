@@ -7,8 +7,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.tt9smart.R;
-import com.tt9smart.preferences.settings.SettingsStore;
-import com.tt9smart.util.sys.DeviceInfo;
 
 public class SwitchShowArrowsUpDown extends SwitchWhenVisibleLayout {
 	public final static String NAME = "pref_arrows_up_down";
@@ -28,6 +26,6 @@ public class SwitchShowArrowsUpDown extends SwitchWhenVisibleLayout {
 
 	@Override
 	public void onLayoutChange(int mainViewLayout) {
-		setVisible(!DeviceInfo.noTouchScreen(getContext()) && mainViewLayout == SettingsStore.LAYOUT_CLASSIC);
+		setVisible(false);
 	}
 }

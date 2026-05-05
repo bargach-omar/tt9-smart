@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:tools="http://schemas.android.com/tools"
-	android:versionCode="1549"
+	android:versionCode="1550"
 	android:versionName="1.0.0"
 	xmlns:android="http://schemas.android.com/apk/res/android">
 
@@ -54,17 +54,6 @@
 			android:theme="@style/TTheme.AddWord" />
 
 		<activity
-			android:label="@string/pref_help"
-			android:name="com.tt9smart.preferences.HelpActivity"
-			android:exported="true"
-			android:theme="@style/TTheme.Preferences">
-			<intent-filter>
-				<action android:name="android.intent.action.VIEW" />
-				<category android:name="android.intent.category.DEFAULT" />
-			</intent-filter>
-		</activity>
-
-		<activity
 			android:label="Test Input"
 			android:name="com.tt9smart.preferences.screens.debug.TestInputActivity"
 			android:exported="true"
@@ -111,6 +100,7 @@
 
 		<activity
 			android:excludeFromRecents="true"
+			android:taskAffinity=""
 			android:label=""
 			android:name="com.tt9smart.ime.voice.VoiceInputPickerActivity"
 			android:theme="@style/TTheme.AddWord" />

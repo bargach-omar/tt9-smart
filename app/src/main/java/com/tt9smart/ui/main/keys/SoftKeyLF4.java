@@ -42,10 +42,7 @@ public class SoftKeyLF4 extends BaseSwipeableKey {
 	}
 
 	private boolean isKeyHidden() {
-		return
-			tt9 != null
-			&& tt9.getSettings().isMainLayoutClassic()
-			&& tt9.isFnPanelVisible();
+		return false;
 	}
 
 	private boolean isKeySmall() {

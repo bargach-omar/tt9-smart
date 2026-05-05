@@ -69,11 +69,11 @@ class ModeABC extends InputMode {
 			newSuggestions.add(language.getKeyNumeral(number));
 			suggestions = newSuggestions;
 		} else if (repeat > 0 && !suggestions.isEmpty()) {
-			autoAcceptTimeout = -1;
+			autoAcceptTimeout = settings.getAutoAcceptTimeoutAbc();
 			shouldSelectNextLetter = true;
 		} else {
 			reset();
-			autoAcceptTimeout = -1;
+			autoAcceptTimeout = settings.getAutoAcceptTimeoutAbc();
 			digitSequence = String.valueOf(number);
 			shouldSelectNextLetter = false;
 

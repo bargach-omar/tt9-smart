@@ -1,9 +1,5 @@
-ext.convertDocs = {String DOCS_MARKDOWN_DIR, String PRIVACY_POLICY_MARKDOWN, String HTML_DIR ->
-	Set<File> docs = fileTree(DOCS_MARKDOWN_DIR).getFiles()
-	docs.add(new File(PRIVACY_POLICY_MARKDOWN))
-	docs.parallelStream().forEach { File markdownPath ->
-		markdownToHtml(markdownPath.path, "${HTML_DIR}/${markdownPath.name.replaceAll("\\.md\$", ".html")}", !PRIVACY_POLICY_MARKDOWN.contains(markdownPath.name))
-	}
+ext.convertMarkdownToHtml = { String markdownPath, String htmlPath, boolean addIndex ->
+	markdownToHtml(markdownPath, htmlPath, addIndex)
 }
 
 static markdownToHtml(markdownPath, htmlPath, addIndex) {

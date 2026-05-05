@@ -145,7 +145,7 @@
 	<string name="dictionary_update_message">Woordenboekupdate beschikbaar voor \"%1$s\".</string>
 	<string name="dictionary_update_update">Laden</string>
 	<string name="donate_title">Doneer</string>
-	<string name="donate_summary">Als je %1$s leuk vindt, kun je me trakteren op een biertje.</string>
+	<string name="donate_summary">Als je %1$s leuk vindt, kun je me trakteren op een koffie.</string>
 	<string name="pref_bottom_padding_portrait">Ruimte eronder (staand)</string>
 	<string name="pref_drag_resize">Slepen om te vergroten/verkleinen</string>
 	<string name="pref_drag_resize_summary">Sleep de statusbalk of de Instellingentoets om het toetsenbord te minimaliseren of de positie ervan op het scherm aan te passen.</string>

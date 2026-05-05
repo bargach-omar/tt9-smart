@@ -59,9 +59,6 @@ public class AppearanceScreen extends ScreenWithPreviewKeyboardHeaderFragment {
 		DropDownAlignment alignment = findPreference(DropDownAlignment.NAME);
 		DropDownKeyHeight numpadKeyHeight = findPreference(DropDownKeyHeight.NAME);
 		DropDownWidth keyboardWidth = findPreference(DropDownWidth.NAME);
-		DropDownNumpadShape numpadShape = findPreference(DropDownNumpadShape.NAME);
-		DropDownNumpadFnKeyScale fnKeyWidth = findPreference(DropDownNumpadFnKeyScale.NAME);
-		DropDownNumpadKeyFontSize numpadKeyFontSize = findPreference(DropDownNumpadKeyFontSize.NAME);
 		DropDownSuggestionFontSize suggestionFontSize = findPreference(DropDownSuggestionFontSize.NAME);
 		ItemFnKeyOrder fnKeyOrder = new ItemFnKeyOrder(activity.getSettings(), findPreference(ItemFnKeyOrder.NAME));
 		DropDownBottomPaddingPortrait bottomPadding = findPreference(DropDownBottomPaddingPortrait.NAME);
@@ -76,10 +73,7 @@ public class AppearanceScreen extends ScreenWithPreviewKeyboardHeaderFragment {
 				.addOnChangeItem(new ItemCategory(findPreference("category_keyboard_geometry")))
 				.addOnChangeItem(new ItemCategory(findPreference("category_keyboard_keys")))
 				.addOnChangeItem(fnKeyOrder)
-				.addOnChangeItem(fnKeyWidth)
-				.addOnChangeItem(numpadKeyFontSize)
 				.addOnChangeItem(numpadKeyHeight)
-				.addOnChangeItem(numpadShape)
 				.addOnChangeItem(suggestionFontSize)
 				.addOnChangePreference(bottomPadding)
 				.addOnChangePreference(findPreference("pref_alternative_suggestion_scrolling"))
@@ -97,9 +91,6 @@ public class AppearanceScreen extends ScreenWithPreviewKeyboardHeaderFragment {
 			numpadKeyHeight,
 			alignment,
 			keyboardWidth,
-			numpadShape,
-			fnKeyWidth,
-			numpadKeyFontSize,
 			suggestionFontSize,
 			bottomPadding
 		};
@@ -154,9 +145,6 @@ public class AppearanceScreen extends ScreenWithPreviewKeyboardHeaderFragment {
 			findPreference(DropDownAlignment.NAME),
 			findPreference(DropDownBottomPaddingPortrait.NAME),
 			findPreference(DropDownWidth.NAME),
-			findPreference(DropDownNumpadShape.NAME),
-			findPreference(DropDownNumpadFnKeyScale.NAME),
-			findPreference(DropDownNumpadKeyFontSize.NAME),
 			findPreference(DropDownSuggestionFontSize.NAME),
 		};
 

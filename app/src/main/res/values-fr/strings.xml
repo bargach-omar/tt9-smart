@@ -164,7 +164,7 @@
 	<string name="dictionary_update_message">Mise à jour du dictionnaire «%1$s» disponible.</string>
 	<string name="dictionary_update_update">Charger</string>
 	<string name="donate_title">Donner</string>
-	<string name="donate_summary">Si vous aimez %1$s, vous pouvez m\'offrir une bière.</string>
+	<string name="donate_summary">Si vous aimez %1$s, vous pouvez m\'offrir un café.</string>
 	<string name="pref_hack_auto_disable_composing_summary">Désactiver automatiquement la composition de texte lorsqu’une application provoque des problèmes de saisie.</string>
 	<string name="pref_hack_key_pad_debounce_time">Protection contre la répétition accidentelle des touches</string>
 	<string name="pref_hack_key_pad_debounce_off">Désactivée</string>

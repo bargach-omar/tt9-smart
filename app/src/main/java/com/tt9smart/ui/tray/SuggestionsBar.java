@@ -97,14 +97,7 @@ public class SuggestionsBar {
 			return;
 		}
 
-		int suggestionLayout;
-		if (settings.isMainLayoutNumpad()) {
-			suggestionLayout = R.layout.suggestion_list_numpad;
-		} else if (settings.isMainLayoutClassic()) {
-			suggestionLayout = R.layout.suggestion_list_classic;
-		} else {
-			suggestionLayout = R.layout.suggestion_list_small;
-		}
+		int suggestionLayout = R.layout.suggestion_list_small;
 
 		mSuggestionsAdapter = new SuggestionsAdapter(
 			context,

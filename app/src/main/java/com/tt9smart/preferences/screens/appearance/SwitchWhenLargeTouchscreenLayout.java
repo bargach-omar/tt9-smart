@@ -4,7 +4,6 @@ import androidx.annotation.Nullable;
 import androidx.preference.SwitchPreferenceCompat;
 
 import com.tt9smart.preferences.settings.SettingsStore;
-import com.tt9smart.util.sys.DeviceInfo;
 
 abstract public class SwitchWhenLargeTouchscreenLayout extends SwitchPreferenceCompat implements ItemLayoutChangeReactive {
 	public SwitchWhenLargeTouchscreenLayout(android.content.Context context, android.util.AttributeSet attrs, int defStyleAttr, int defStyleRes) { super(context, attrs, defStyleAttr, defStyleRes); init(); }
@@ -29,8 +28,7 @@ abstract public class SwitchWhenLargeTouchscreenLayout extends SwitchPreferenceC
 
 	@Override
 	public void onLayoutChange(int mainViewLayout) {
-		final boolean isLargeLayout = mainViewLayout == SettingsStore.LAYOUT_CLASSIC || mainViewLayout == SettingsStore.LAYOUT_NUMPAD;
-		setVisible(!DeviceInfo.noTouchScreen(getContext()) && isLargeLayout);
+		setVisible(false);
 	}
 
 

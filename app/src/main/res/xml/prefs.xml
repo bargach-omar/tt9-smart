@@ -4,15 +4,6 @@
 	app:orderingFromXml="true">
 
 	<Preference
-		app:key="screen_help"
-		app:title="@string/pref_help">
-		<intent
-			android:action="android.intent.action.VIEW"
-			android:targetPackage="com.tt9smart"
-			android:targetClass="com.tt9smart.preferences.HelpActivity" />
-	</Preference>
-
-	<Preference
 		app:fragment="com.tt9smart.preferences.AppearanceScreen"
 		app:key="screen_appearance"
 		app:title="@string/pref_category_appearance" />

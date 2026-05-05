@@ -89,7 +89,7 @@
 	<string name="dictionary_update_message">Налично е обновление на речника за „%1$s“.</string>
 	<string name="dictionary_update_update">Зареди</string>
 	<string name="donate_title">Дарете</string>
-	<string name="donate_summary">Ако харесвате %1$s, черпете една бира.</string>
+	<string name="donate_summary">Ако харесвате %1$s, черпете едно кафе.</string>
 	<string name="function_edit_text">Редактиране на текст</string>
 	<string name="add_word_not_available_in_language">Добавянето на думи не е възможно на този език.</string>
 	<string name="function_backspace">Триене на текст</string>

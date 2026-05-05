@@ -241,7 +241,7 @@
 	<string name="pref_numpad_shape_square">Kare</string>
 	<string name="pref_numpad_shape_v">V-şekli</string>
 	<string name="pref_arrows_left_right">Sol/sağ oklar</string>
-	<string name="donate_summary">Eğer %1$s\'ı beğendiyseniz bana bir bira ısmarlayabilirsiniz</string>
+	<string name="donate_summary">Eğer %1$s\'ı beğendiyseniz bana bir kahve ısmarlayabilirsiniz</string>
 	<string name="donate_hold_to_open">Tarayıcıda açmak için basılı tutun.</string>
 	<string name="key_key">Tuş</string>
 	<string name="fn_key_order_error_duplicate_key">Yinelenen tuşlara izin verilmez.</string>

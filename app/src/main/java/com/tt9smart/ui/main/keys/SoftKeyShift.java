@@ -30,10 +30,7 @@ public class SoftKeyShift extends BaseSoftKeyWithIcons {
 	}
 
 	private boolean isShiftHidden() {
-		return
-			tt9 != null
-			&& tt9.getSettings().isMainLayoutClassic()
-			&& tt9.isFnPanelVisible();
+		return false;
 	}
 
 	@Override public boolean isDynamic() { return true; }

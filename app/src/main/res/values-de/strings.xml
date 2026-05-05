@@ -145,7 +145,7 @@
 	<string name="dictionary_update_message">Wörterbuchupdate verfügbar für „%1$s“.</string>
 	<string name="dictionary_update_update">Laden</string>
 	<string name="donate_title">Spenden</string>
-	<string name="donate_summary">Wenn Ihnen %1$s gefällt, könnten Sie mir ein Bier spendieren.</string>
+	<string name="donate_summary">Wenn Ihnen %1$s gefällt, könnten Sie mir einen Kaffee spendieren.</string>
 	<string name="pref_drag_resize_summary">Die Statusleiste oder die Einstelltaste ziehen, um die Tastatur zu minimieren oder ihre Position auf dem Bildschirm anzupassen.</string>
 	<string name="pref_double_tap_resize_summary">Durch Doppeltippen auf die Statusleiste die Tastatur vergrößern oder verkleinern, wenn keine Vorschläge angezeigt werden.</string>
 	<string name="pref_double_zero_char">Zeichen bei doppeltem Drücken der Taste „0“</string>

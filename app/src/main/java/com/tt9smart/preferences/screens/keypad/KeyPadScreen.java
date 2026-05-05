@@ -38,7 +38,7 @@ public class KeyPadScreen extends BaseScreenFragment {
 		}
 
 		// hide the entire category when the settings show no interest in it
-		final boolean isVisible = activity.getSettings().isMainLayoutLarge() || activity.getSettings().isMainLayoutSmall();
+		final boolean isVisible = activity.getSettings().isMainLayoutSmall();
 		final PreferenceCategory category = findPreference("category_virtual_keys");
 		if (category != null) {
 			category.setVisible(isVisible);

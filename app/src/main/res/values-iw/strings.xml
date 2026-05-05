@@ -241,7 +241,7 @@
 	<string name="pref_numpad_shape_square">ריבוע</string>
 	<string name="pref_numpad_shape_v">צורת V</string>
 	<string name="pref_arrows_left_right">חצים שמאלה/ימינה</string>
-	<string name="donate_summary">אם אתה אוהב %1$s, אתה יכול לקנות לי בירה.</string>
+	<string name="donate_summary">אם אתה אוהב %1$s, אתה יכול לקנות לי קפה.</string>
 	<string name="donate_hold_to_open">לחצו והחזיקו כדי לפתוח בדפדפן.</string>
 	<string name="fn_key_order_error_duplicate_key">לא ניתן להשתמש באותם מקשים פעמיים.</string>
 	<string name="fn_key_order_legend">מקרא:</string>

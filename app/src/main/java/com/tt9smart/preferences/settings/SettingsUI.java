@@ -28,12 +28,9 @@ public class SettingsUI extends SettingsTyping {
 	public final static int LAYOUT_STEALTH = 0;
 	public final static int LAYOUT_TRAY = 2;
 	public final static int LAYOUT_SMALL = 3;
-	public final static int LAYOUT_NUMPAD = 4;
-	public final static int LAYOUT_CLASSIC = 5;
 	public final static int LAYOUT_SMARTBAR = 6;
 
 	private final int DEFAULT_LAYOUT;
-	private final int DEFAULT_LARGE_LAYOUT;
 
 	public final static int MIN_WIDTH_PERCENT = 50;
 	private int DEFAULT_WIDTH_LANDSCAPE = 0;
@@ -43,10 +40,8 @@ public class SettingsUI extends SettingsTyping {
 	SettingsUI(Context context) {
 		super(context);
 
-		DEFAULT_LARGE_LAYOUT = LAYOUT_NUMPAD;
-
 		if (DeviceInfo.noKeyboard(context)) {
-			DEFAULT_LAYOUT = DEFAULT_LARGE_LAYOUT;
+			DEFAULT_LAYOUT = LAYOUT_SMARTBAR;
 		} else {
 			DEFAULT_LAYOUT = LAYOUT_SMARTBAR;
 		}
@@ -178,7 +173,7 @@ public class SettingsUI extends SettingsTyping {
 	}
 
 	public void setMainViewLayout(int layout) {
-		if (layout != LAYOUT_STEALTH && layout != LAYOUT_TRAY && layout != LAYOUT_SMALL && layout != LAYOUT_NUMPAD && layout != LAYOUT_CLASSIC && layout != LAYOUT_SMARTBAR) {
+		if (layout != LAYOUT_STEALTH && layout != LAYOUT_TRAY && layout != LAYOUT_SMALL && layout != LAYOUT_SMARTBAR) {
 			Logger.w(getClass().getSimpleName(), "Ignoring invalid main view layout: " + layout);
 			return;
 		}
@@ -191,27 +186,6 @@ public class SettingsUI extends SettingsTyping {
 		return getStringifiedInt(DropDownLayoutType.NAME, DEFAULT_LAYOUT);
 	}
 
-	public int getPreferredLargeLayout() {
-		final int layout = prefs.getInt("pref_preferred_large_layout", DEFAULT_LARGE_LAYOUT);
-		return layout != LAYOUT_CLASSIC && layout != LAYOUT_NUMPAD ? DEFAULT_LARGE_LAYOUT : layout;
-	}
-
-	public void setPreferredLargeLayout(int layout) {
-		if (layout != LAYOUT_CLASSIC && layout != LAYOUT_NUMPAD) {
-			Logger.w(getClass().getSimpleName(), "Ignoring invalid preferred large layout: " + layout);
-			return;
-		}
-
-		getPrefsEditor().putInt("pref_preferred_large_layout", layout).apply();
-	}
-
-	public boolean isMainLayoutLarge() {
-		final int layout = getMainViewLayout();
-		return layout == LAYOUT_CLASSIC || layout == LAYOUT_NUMPAD;
-	}
-
-	public boolean isMainLayoutClassic() { return getMainViewLayout() == LAYOUT_CLASSIC; }
-	public boolean isMainLayoutNumpad() { return getMainViewLayout() == LAYOUT_NUMPAD; }
 	public boolean isMainLayoutTray() { return getMainViewLayout() == LAYOUT_TRAY; }
 	public boolean isMainLayoutSmall() { return getMainViewLayout() == LAYOUT_SMALL; }
 	public boolean isMainLayoutStealth() { return getMainViewLayout() == LAYOUT_STEALTH; }

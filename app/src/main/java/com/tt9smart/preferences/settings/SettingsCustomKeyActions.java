@@ -4,12 +4,6 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
-import java.util.HashMap;
-
-import com.tt9smart.commands.CmdAddWord;
-import com.tt9smart.commands.CmdEditText;
-import com.tt9smart.commands.CmdEditWord;
-import com.tt9smart.commands.CmdVoiceInput;
 import com.tt9smart.commands.NullCommand;
 
 public class SettingsCustomKeyActions extends SettingsUI {
@@ -22,16 +16,6 @@ public class SettingsCustomKeyActions extends SettingsUI {
 	public static final String CUSTOM_ACTION_KEY_7 = "_7";
 	public static final String CUSTOM_ACTION_KEY_8 = "_8";
 	public static final String CUSTOM_ACTION_KEY_9 = "_9";
-
-	protected static final HashMap<String, String> classicLayoutDefaultsSwipeLeft = new HashMap<>() {{
-		put(CUSTOM_ACTION_KEY_1, CmdAddWord.ID);
-		put(CUSTOM_ACTION_KEY_2, CmdEditWord.ID);
-		put(CUSTOM_ACTION_KEY_5, CmdEditText.ID);
-	}};
-
-	protected static final HashMap<String, String> classicLayoutDefaultsSwipeRight = new HashMap<>() {{
-		put(CUSTOM_ACTION_KEY_3, CmdVoiceInput.ID);
-	}};
 
 	public float getMoveCursorWithSpaceThreshold() {
 		return 0;
@@ -47,21 +31,11 @@ public class SettingsCustomKeyActions extends SettingsUI {
 
 	@NonNull
 	public String getSwipeRightCommand(String keySuffix) {
-		if (keySuffix == null || keySuffix.isEmpty() || !classicLayoutDefaultsSwipeRight.containsKey(keySuffix) || !isMainLayoutClassic()) {
-			return NullCommand.ID;
-		}
-
-		String defaultCmd = classicLayoutDefaultsSwipeRight.get(keySuffix);
-		return defaultCmd != null ? defaultCmd : NullCommand.ID;
+		return NullCommand.ID;
 	}
 
 	@NonNull
 	public String getSwipeLeftCommand(String keySuffix) {
-		if (keySuffix == null || keySuffix.isEmpty() || !classicLayoutDefaultsSwipeLeft.containsKey(keySuffix) || !isMainLayoutClassic()) {
-			return NullCommand.ID;
-		}
-
-		String defaultCmd = classicLayoutDefaultsSwipeLeft.get(keySuffix);
-		return defaultCmd != null ? defaultCmd : NullCommand.ID;
+		return NullCommand.ID;
 	}
 }

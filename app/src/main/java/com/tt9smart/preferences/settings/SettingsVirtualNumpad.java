@@ -5,17 +5,11 @@ import android.util.TypedValue;
 
 import androidx.annotation.NonNull;
 
-import java.util.HashMap;
-
 import com.tt9smart.R;
 import com.tt9smart.preferences.screens.appearance.DropDownKeyHeight;
-import com.tt9smart.preferences.screens.appearance.DropDownNumpadFnKeyScale;
-import com.tt9smart.preferences.screens.appearance.DropDownNumpadKeyFontSize;
-import com.tt9smart.preferences.screens.appearance.DropDownNumpadShape;
 import com.tt9smart.preferences.screens.appearance.SwitchLeftRightArrows;
 import com.tt9smart.preferences.screens.appearance.SwitchShowArrowsUpDown;
 import com.tt9smart.preferences.screens.fnKeyOrder.FnKeyOrderValidator;
-import com.tt9smart.util.sys.DeviceInfo;
 
 public class SettingsVirtualNumpad extends SettingsCustomKeyActions {
 	public final static int NUMPAD_SHAPE_SQUARE = 0;
@@ -25,16 +19,6 @@ public class SettingsVirtualNumpad extends SettingsCustomKeyActions {
 	public static final String DEFAULT_LFN_KEY_ORDER = "1234";
 	public static final String DEFAULT_RFN_KEY_ORDER = "5678";
 
-	public static final HashMap<Character, Integer> KEY_ORDER_MAP = new HashMap<>() {{
-		put('1', R.id.soft_key_wrapper_1);
-		put('2', R.id.soft_key_wrapper_2);
-		put('3', R.id.soft_key_wrapper_3);
-		put('4', R.id.soft_key_wrapper_4);
-		put('5', R.id.soft_key_wrapper_5);
-		put('6', R.id.soft_key_wrapper_6);
-		put('7', R.id.soft_key_wrapper_7);
-		put('8', R.id.soft_key_wrapper_8);
-	}};
 
 	SettingsVirtualNumpad(Context context) {
 		super(context);
@@ -53,7 +37,7 @@ public class SettingsVirtualNumpad extends SettingsCustomKeyActions {
 	}
 
 	public boolean isFnKeyOrderEnabled() {
-		return isMainLayoutNumpad() && !DeviceInfo.noTouchScreen(context);
+		return false;
 	}
 
 	@NonNull public String getLfnKeyOrder() {
@@ -96,37 +80,26 @@ public class SettingsVirtualNumpad extends SettingsCustomKeyActions {
 	}
 
 	public float getNumpadFnKeyScale() {
-		return getStringifiedFloat(DropDownNumpadFnKeyScale.NAME, getNumpadFnKeyDefaultScale());
+		return getNumpadFnKeyDefaultScale();
 	}
 
 	public int getNumpadKeyFontSizePercent() {
-		return isMainLayoutLarge() ? getStringifiedInt(DropDownNumpadKeyFontSize.NAME, 100) : 100;
+		return 100;
 	}
 
 	public int getNumpadShape() {
-		return getStringifiedInt(DropDownNumpadShape.NAME, NUMPAD_SHAPE_SQUARE);
+		return NUMPAD_SHAPE_SQUARE;
 	}
 
-	public boolean isNumpadShapeLongSpace() { return getNumpadShape() == NUMPAD_SHAPE_LONG_SPACE; }
-	public boolean isNumpadShapeV() { return getNumpadShape() == NUMPAD_SHAPE_V; }
+	public boolean isNumpadShapeLongSpace() { return false; }
+	public boolean isNumpadShapeV() { return false; }
 
 
 	public boolean getTutorialSeen() {
-		if (isMainLayoutClassic()) {
-			return prefs.getBoolean("pref_tutorial_classic_seen", false);
-		} else if (isMainLayoutNumpad()) {
-			return prefs.getBoolean("pref_tutorial_fn_keys_seen", false);
-		} else {
-			return false;
-		}
+		return false;
 	}
 
 
 	public void setTutorialSeen() {
-		if (isMainLayoutClassic()) {
-			getPrefsEditor().putBoolean("pref_tutorial_classic_seen", true).apply();
-		} else if (isMainLayoutNumpad()) {
-			getPrefsEditor().putBoolean("pref_tutorial_fn_keys_seen", true).apply();
-		}
 	}
 }

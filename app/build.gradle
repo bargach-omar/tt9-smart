@@ -55,12 +55,11 @@ tasks.register('copyDownloadsToAssets', Copy) {
 
 
 tasks.register('generateDocs') {
-	inputs.dir HELP_MARKDOWN_DIR
 	inputs.file PRIVACY_POLICY_MARKDOWN
 	outputs.dir DOCS_HTML_DIR
 
 	doLast {
-		convertDocs(HELP_MARKDOWN_DIR, PRIVACY_POLICY_MARKDOWN, DOCS_HTML_DIR)
+		convertMarkdownToHtml(PRIVACY_POLICY_MARKDOWN, "${DOCS_HTML_DIR}/privacy.html", false)
 	}
 }
 

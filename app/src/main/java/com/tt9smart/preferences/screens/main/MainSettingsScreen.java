@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import com.tt9smart.R;
-import com.tt9smart.preferences.HelpFile;
 import com.tt9smart.preferences.PreferencesActivity;
 import com.tt9smart.preferences.screens.BaseScreenFragment;
 import com.tt9smart.util.sys.SystemSettings;
@@ -28,7 +27,6 @@ public class MainSettingsScreen extends BaseScreenFragment {
 		boolean isTT9On = SystemSettings.isTT9Enabled(activity);
 		createSettingsSection(isTT9On);
 		createAboutSection(isTT9On);
-		updateHelpButtonDescription();
 		resetFontSize(false);
 	}
 
@@ -49,21 +47,6 @@ public class MainSettingsScreen extends BaseScreenFragment {
 		ProfitPreference profPref = findPreference(ProfitPreference.NAME);
 		if (profPref != null && activity != null) {
 			profPref.populate(activity, isTT9On);
-		}
-	}
-
-
-	private void updateHelpButtonDescription() {
-		Preference help = findPreference("screen_help");
-		if (help == null || activity == null) {
-			return;
-		}
-
-		String systemLanguage = SystemSettings.getLocale().replaceAll("_\\w+$", "");
-		if (new HelpFile(activity, systemLanguage).exists()) {
-			help.setSummary("");
-		} else {
-			help.setSummary(R.string.english_only);
 		}
 	}
 

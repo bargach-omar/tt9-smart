@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- IDs for numpad keys that may be referenced in code but have no layout file -->
+	<item name="soft_key_0" type="id" />
+	<item name="soft_key_200" type="id" />
+	<item name="soft_key_text_201" type="id" />
+	<item name="soft_key_text_202" type="id" />
+	<item name="soft_key_left_arrow" type="id" />
+	<item name="soft_key_right_arrow" type="id" />
+	<item name="soft_key_wrapper_1" type="id" />
+	<item name="soft_key_wrapper_2" type="id" />
+	<item name="soft_key_wrapper_3" type="id" />
+	<item name="soft_key_wrapper_4" type="id" />
+	<item name="soft_key_wrapper_5" type="id" />
+	<item name="soft_key_wrapper_6" type="id" />
+	<item name="soft_key_wrapper_7" type="id" />
+	<item name="soft_key_wrapper_8" type="id" />
+</resources>

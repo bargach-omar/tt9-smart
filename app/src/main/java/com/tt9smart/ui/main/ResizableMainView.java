@@ -18,8 +18,6 @@ public class ResizableMainView extends StaticMainView implements View.OnAttachSt
 	private float resizeStartY;
 	private long lastResizeTime;
 
-	private int heightClassic;
-	private int heightNumpad;
 	private int heightSmall;
 	private int heightTray;
 	private int heightSmartBar;
@@ -34,8 +32,6 @@ public class ResizableMainView extends StaticMainView implements View.OnAttachSt
 	private void calculateSnapHeights() {
 		boolean forceRecalculate = DeviceInfo.AT_LEAST_ANDROID_15;
 
-		heightClassic = new MainLayoutClassic(tt9).getHeight(forceRecalculate);
-		heightNumpad = new MainLayoutNumpad(tt9).getHeight(forceRecalculate);
 		heightSmall = new MainLayoutSmall(tt9).getHeight(forceRecalculate);
 		heightTray = new MainLayoutTray(tt9).getHeight(forceRecalculate);
 		heightSmartBar = new MainLayoutSmartBar(tt9).getHeight(forceRecalculate);
@@ -75,7 +71,7 @@ public class ResizableMainView extends StaticMainView implements View.OnAttachSt
 	@Override public void onViewAttachedToWindow(@NonNull View v) {
 		if (main != null) {
 			main.setPadding();
-			setHeight(height, heightSmall, main instanceof MainLayoutNumpad ? heightNumpad : heightClassic);
+			setHeight(height, heightSmall, heightSmartBar);
 		}
 	}
 
@@ -87,10 +83,6 @@ public class ResizableMainView extends StaticMainView implements View.OnAttachSt
 
 
 	public void onAlign(float deltaX) {
-		if (!(main instanceof MainLayoutNumpad) && !(main instanceof MainLayoutClassic)) {
-			return;
-		}
-
 		boolean right = deltaX > 0;
 		SettingsStore settings = tt9.getSettings();
 
@@ -140,9 +132,9 @@ public class ResizableMainView extends StaticMainView implements View.OnAttachSt
 		if (settings.isMainLayoutTray() || settings.isMainLayoutSmartBar()) {
 			expand(1);
 		} else if (settings.isMainLayoutSmall()) {
-			expand(heightNumpad);
+			expand(heightSmartBar);
 		} else {
-			shrink(-heightNumpad);
+			shrink(-heightSmartBar);
 		}
 	}
 
@@ -153,7 +145,6 @@ public class ResizableMainView extends StaticMainView implements View.OnAttachSt
 		}
 
 		final SettingsStore settings = tt9.getSettings();
-		final int largeSize = settings.getPreferredLargeLayout() == SettingsStore.LAYOUT_CLASSIC ? heightClassic : heightNumpad;
 
 		if (settings.isMainLayoutTray() || settings.isMainLayoutSmartBar()) {
 			settings.setMainViewLayout(SettingsStore.LAYOUT_SMALL);
@@ -162,13 +153,13 @@ public class ResizableMainView extends StaticMainView implements View.OnAttachSt
 			main.requestPreventEdgeToEdge();
 			vibration.vibrate();
 		} else if (settings.isMainLayoutSmall()) {
-			settings.setMainViewLayout(settings.getPreferredLargeLayout());
-			height = (int) Math.max(Math.max(largeSize * 0.6, heightSmall * 1.1), height + delta);
+			settings.setMainViewLayout(SettingsStore.LAYOUT_SMALL);
+			height = (int) Math.max(Math.max(heightSmall * 0.6, heightSmall * 1.1), height + delta);
 			tt9.setCurrentView();
 			main.requestPreventEdgeToEdge();
 			vibration.vibrate();
 		} else {
-			changeHeight(delta, heightSmall, largeSize);
+			changeHeight(delta, heightSmall, heightSmall);
 		}
 	}
 
@@ -180,8 +171,6 @@ public class ResizableMainView extends StaticMainView implements View.OnAttachSt
 			return;
 		}
 
-		final int largeSize = settings.getPreferredLargeLayout() == SettingsStore.LAYOUT_CLASSIC ? heightClassic : heightNumpad;
-
 		if (settings.isMainLayoutSmall()) {
 			settings.setMainViewLayout(SettingsStore.LAYOUT_TRAY);
 			height = heightTray;
@@ -189,7 +178,7 @@ public class ResizableMainView extends StaticMainView implements View.OnAttachSt
 			fitMain();
 			main.requestPreventEdgeToEdge();
 			vibration.vibrate();
-		} else if (!changeHeight(delta, heightSmall, largeSize)) {
+		} else if (!changeHeight(delta, heightSmall, heightSmall)) {
 			settings.setMainViewLayout(SettingsStore.LAYOUT_SMALL);
 			height = heightSmall;
 			tt9.setCurrentView();
@@ -231,13 +220,7 @@ public class ResizableMainView extends StaticMainView implements View.OnAttachSt
 		calculateSnapHeights();
 		int heightLow, heightHigh, heightMain = main.getHeight(true);
 
-		if (main instanceof MainLayoutNumpad) {
-			heightLow = heightSmall;
-			heightHigh = heightNumpad;
-		} else if (main instanceof MainLayoutClassic) {
-			heightLow = heightSmall;
-			heightHigh = heightClassic;
-		} else if (main instanceof MainLayoutSmall) {
+		if (main instanceof MainLayoutSmall) {
 			heightLow = 0;
 			heightHigh = Math.max(heightSmall, heightMain); // make room for the command palette
 		} else if (main instanceof MainLayoutSmartBar) {
