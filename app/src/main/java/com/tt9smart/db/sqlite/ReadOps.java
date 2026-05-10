@@ -25,6 +25,7 @@ import com.tt9smart.db.words.SlowQueryStats;
 import com.tt9smart.languages.Language;
 import com.tt9smart.preferences.settings.SettingsStore;
 import com.tt9smart.util.Logger;
+import com.tt9smart.util.TextFolding;
 
 public class ReadOps {
 	private final String LOG_TAG = "ReadOperations";
@@ -138,9 +139,10 @@ public class ReadOps {
 
 	public ArrayList<String> getWordsByPrefix(@NonNull SQLiteDatabase db, @NonNull Language language, @NonNull String prefix, int maxWords) {
 		ArrayList<String> result = new ArrayList<>();
+		String foldedPrefix = TextFolding.fold(prefix);
 		String sql = "SELECT word FROM " + Tables.getWords(language.getId()) +
-			" WHERE word LIKE ? ORDER BY frequency DESC LIMIT ?";
-		try (Cursor cursor = db.rawQuery(sql, new String[]{prefix + "%", String.valueOf(maxWords)})) {
+			" WHERE word_folded LIKE ? ORDER BY frequency DESC LIMIT ?";
+		try (Cursor cursor = db.rawQuery(sql, new String[]{foldedPrefix + "%", String.valueOf(maxWords)})) {
 			while (cursor.moveToNext()) {
 				result.add(cursor.getString(0));
 			}

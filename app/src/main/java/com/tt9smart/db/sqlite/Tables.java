@@ -60,7 +60,9 @@ public class Tables {
 
 
 	public static void createWordIndex(@NonNull SQLiteDatabase db, @NonNull Language language) {
-		CompiledQueryCache.execute(db, createWordsIndex(language.getId()));
+		CompiledQueryCache
+			.execute(db, createWordsIndex(language.getId()))
+			.execute(createWordFoldedIndex(language.getId()));
 	}
 
 	public static void createPositionIndex(@NonNull SQLiteDatabase db, @NonNull Language language) {
@@ -71,7 +73,8 @@ public class Tables {
 	public static void dropWordsIndexes(@NonNull SQLiteDatabase db, @NonNull Language language) {
 		CompiledQueryCache
 			.execute(db, dropWordsIndex(language.getId()))
-			.execute(dropWordPositionsIndex(language.getId()));
+			.execute(dropWordPositionsIndex(language.getId()))
+			.execute(dropWordFoldedIndex(language.getId()));
 	}
 
 
@@ -80,7 +83,8 @@ public class Tables {
 			"CREATE TABLE IF NOT EXISTS " + getWords(langId) + " (" +
 				"frequency INTEGER NOT NULL DEFAULT 0, " +
 				"position INTEGER NOT NULL, " +
-				"word TEXT NOT NULL" +
+				"word TEXT NOT NULL, " +
+				"word_folded TEXT NOT NULL DEFAULT ''" +
 			")";
 	}
 
@@ -88,8 +92,16 @@ public class Tables {
 		return "CREATE INDEX IF NOT EXISTS idx_position_" + langId + " ON " + getWords(langId) + " (position, word)";
 	}
 
+	static String createWordFoldedIndex(int langId) {
+		return "CREATE INDEX IF NOT EXISTS idx_word_folded_" + langId + " ON " + getWords(langId) + " (word_folded)";
+	}
+
 	private static String dropWordsIndex(int langId) {
 		return "DROP INDEX IF EXISTS idx_position_" + langId;
+	}
+
+	private static String dropWordFoldedIndex(int langId) {
+		return "DROP INDEX IF EXISTS idx_word_folded_" + langId;
 	}
 
 	private static String createWordPositions(int langId) {

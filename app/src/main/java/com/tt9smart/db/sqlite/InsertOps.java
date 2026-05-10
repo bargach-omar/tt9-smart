@@ -14,6 +14,7 @@ import com.tt9smart.db.entities.Word;
 import com.tt9smart.db.entities.WordPosition;
 import com.tt9smart.db.wordPairs.WordPair;
 import com.tt9smart.languages.Language;
+import com.tt9smart.util.TextFolding;
 
 
 public class InsertOps {
@@ -24,13 +25,14 @@ public class InsertOps {
 	public void insertWord(@NonNull SQLiteDatabase db, @NonNull Language language, @NonNull Word word) {
 		SQLiteStatement insert = insertWordsQuery.get(language.getId());
 		if (insert == null) {
-			insert = CompiledQueryCache.get(db, "INSERT INTO " + Tables.getWords(language.getId()) + " (frequency, position, word) VALUES (?, ?, ?)");
+			insert = CompiledQueryCache.get(db, "INSERT INTO " + Tables.getWords(language.getId()) + " (frequency, position, word, word_folded) VALUES (?, ?, ?, ?)");
 			insertWordsQuery.put(language.getId(), insert);
 		}
 
 		insert.bindLong(1, word.frequency);
 		insert.bindLong(2, word.position);
 		insert.bindString(3, word.word);
+		insert.bindString(4, TextFolding.fold(word.word.toLowerCase(language.getLocale())));
 		insert.execute();
 	}
 
@@ -58,10 +60,13 @@ public class InsertOps {
 
 
 	public static boolean insertCustomWord(@NonNull SQLiteDatabase db, @NonNull Language language, @NonNull String sequence, @NonNull String word) {
+		String wordFolded = TextFolding.fold(word.toLowerCase(language.getLocale()));
+
 		ContentValues values = new ContentValues();
 		values.put("langId", language.getId());
 		values.put("sequence", sequence);
 		values.put("word", word);
+		values.put("word_folded", wordFolded);
 
 		long insertId = db.insert(Tables.CUSTOM_WORDS, null, values);
 		if (insertId == -1) {
@@ -74,6 +79,7 @@ public class InsertOps {
 		values = new ContentValues();
 		values.put("position", (int)-insertId);
 		values.put("word", word);
+		values.put("word_folded", wordFolded);
 		insertId = db.insert(Tables.getWords(language.getId()), null, values);
 
 		return insertId != -1;
@@ -83,8 +89,8 @@ public class InsertOps {
 	public static void restoreCustomWords(@NonNull SQLiteDatabase db, @NonNull Language language) {
 		CompiledQueryCache.execute(
 			db,
-			"INSERT INTO " + Tables.getWords(language.getId()) + " (position, word) " +
-				"SELECT -id, word FROM " + Tables.CUSTOM_WORDS + " WHERE langId = " + language.getId()
+			"INSERT INTO " + Tables.getWords(language.getId()) + " (position, word, word_folded) " +
+				"SELECT -id, word, word_folded FROM " + Tables.CUSTOM_WORDS + " WHERE langId = " + language.getId()
 		);
 	}
 

@@ -31,6 +31,16 @@ public record Migration(String query, int oldVersion) {
 			// fix custom emoji with an incorrect sequence accidentally caused when introducing Sequences()
 			"DELETE FROM " + Tables.CUSTOM_WORDS + " WHERE langId = " + new EmojiLanguage(null).getId(),
 			1287
+		),
+		new Migration(
+			// add word_folded column to custom_words for accent-insensitive prefix search
+			"ALTER TABLE " + Tables.CUSTOM_WORDS + " ADD COLUMN word_folded TEXT NOT NULL DEFAULT ''",
+			1552
+		),
+		new Migration(
+			// force re-import of all dictionaries to populate the new word_folded column
+			"DELETE FROM " + Tables.LANGUAGES_META,
+			1552
 		)
 	};
 }
