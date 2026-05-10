@@ -2,7 +2,7 @@
 <resources>
 	<string name="app_name" translatable="false">TT9 Smart</string>
 	<string name="app_name_short" translatable="false">TT9S</string>
-	<string name="dictionary_url" translatable="false">https://raw.githubusercontent.com/sspanak/tt9/%1$s/downloads/%2$s</string>
+	<string name="dictionary_url" translatable="false">https://raw.githubusercontent.com/bargach-omar/tt9-smart/%1$s/downloads/%2$s</string>
 	<string name="system_night_mode" translatable="false">n</string>
 
 	<string name="app_settings">TT9 Settings</string>

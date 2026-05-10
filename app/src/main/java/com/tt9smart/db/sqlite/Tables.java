@@ -126,7 +126,8 @@ public class Tables {
 			"id INTEGER PRIMARY KEY, " +
 			"langId INTEGER NOT NULL, " +
 			"sequence TEXT NOT NULL, " +
-			"word INTEGER NOT NULL " +
+			"word INTEGER NOT NULL, " +
+			"word_folded TEXT NOT NULL DEFAULT ''" +
 		")";
 	}
 
