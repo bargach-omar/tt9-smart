@@ -250,6 +250,27 @@ public class TextField extends InputField {
 
 
 	/**
+	 * Atomically commits any pending composing text, deletes the prefix, and inserts the word
+	 * as composing text. Wraps all three steps in beginBatchEdit/endBatchEdit so that apps
+	 * with non-standard InputConnections (e.g. Chrome URL bar with inline autocomplete) cannot
+	 * process intermediate states and silently ignore the deleteSurroundingText call.
+	 */
+	public boolean replacePrefix(@NonNull String prefix, @NonNull String word) {
+		InputConnection connection = getConnection();
+		if (connection == null || !isComposingSupported) return false;
+
+		connection.beginBatchEdit();
+		connection.finishComposingText();
+		boolean ok = prefix.isEmpty() || connection.deleteSurroundingText(prefix.length(), 0);
+		if (ok) ok = connection.setComposingText(word, 1);
+		connection.endBatchEdit();
+
+		if (ok) composingText = word;
+		return ok;
+	}
+
+
+	/**
 	 * Erases the previous N characters and sets the given "text" as composing text. N is the length of
 	 * the given "text". Returns "true" if the operation was successful, "false" otherwise.
 	 */

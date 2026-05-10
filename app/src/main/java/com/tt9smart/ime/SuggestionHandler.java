@@ -27,6 +27,8 @@ import com.tt9smart.util.sys.Clipboard;
 
 abstract public class SuggestionHandler extends TypingHandler {
 	@Nullable private Handler suggestionHandler;
+	protected boolean isBarShowingWordPredictions = false;
+	protected String lastWordPredictionPrefix = "";
 
 
 	@Override
@@ -127,6 +129,11 @@ abstract public class SuggestionHandler extends TypingHandler {
 
 	@Override
 	protected void scrollSuggestions(boolean backward) {
+		if (isBarShowingWordPredictions) {
+			// Only move the visual selection in the bar — don't update composing text
+			suggestionOps.scrollTo(backward ? -1 : 1);
+			return;
+		}
 		super.scrollSuggestions(backward);
 		if (settings.isMainLayoutSmartBar() && InputModeKind.isABC(mInputMode)) {
 			loadWordPredictions();
@@ -196,13 +203,25 @@ abstract public class SuggestionHandler extends TypingHandler {
 		}
 
 		final ArrayList<String> suggestions = mInputMode.getSuggestions();
-		suggestionOps.set(suggestions, mInputMode.getRecommendedSuggestionIdx(), mInputMode.containsGeneratedSuggestions());
 
 		// either accept the first one automatically (when switching from punctuation to text
 		// or vice versa), or schedule auto-accept in N seconds (in ABC mode)
 		int autoAcceptTimeout = mInputMode.getAutoAcceptTimeout();
 		if (settings.isMainLayoutSmartBar() && InputModeKind.isABC(mInputMode)) {
-			suggestionOps.setBarVisible(!suggestions.isEmpty());
+			if (!suggestions.isEmpty()) {
+				// Character options are actively shown — exit predictions mode
+				isBarShowingWordPredictions = false;
+				lastWordPredictionPrefix = "";
+				suggestionOps.set(suggestions, mInputMode.getRecommendedSuggestionIdx(), mInputMode.containsGeneratedSuggestions());
+				suggestionOps.setBarVisible(true);
+			} else if (!isBarShowingWordPredictions) {
+				// No char options and no predictions — hide bar
+				suggestionOps.set(suggestions, mInputMode.getRecommendedSuggestionIdx(), mInputMode.containsGeneratedSuggestions());
+				suggestionOps.setBarVisible(false);
+			}
+			// If predictions are showing and suggestions are empty, keep bar as-is
+		} else {
+			suggestionOps.set(suggestions, mInputMode.getRecommendedSuggestionIdx(), mInputMode.containsGeneratedSuggestions());
 		}
 		if (suggestionOps.scheduleDelayedAccept(autoAcceptTimeout)) {
 			if (onComplete != null) {
@@ -345,26 +364,36 @@ abstract public class SuggestionHandler extends TypingHandler {
 
 	private void loadWordPredictions() {
 		if (mLanguage == null) return;
-		// Use sync read so this call is ordered after any prior setComposingText (same binder thread).
 		String prefix = extractCurrentWord(textField.getStringBeforeCursorSync(50));
 		if (prefix.isEmpty()) {
-			clearWordPredictions();
+			if (isBarShowingWordPredictions) {
+				isBarShowingWordPredictions = false;
+				lastWordPredictionPrefix = "";
+				suggestionOps.setBarVisible(false);
+				suggestionOps.set(null);
+			}
 			return;
 		}
+		final String storedPrefix = prefix;
 		final String prefixLower = prefix.toLowerCase(mLanguage.getLocale());
 		DataStore.getWordsByPrefix(
 			predictions -> new Handler(Looper.getMainLooper()).post(() -> {
-				View bar = getWordPredictionsBar();
-				if (bar == null) return;
+				if (!suggestionOps.isEmpty() && !isBarShowingWordPredictions) return;
 				if (!predictions.isEmpty()) {
-					showWordPredictions(bar, predictions);
+					isBarShowingWordPredictions = true;
+					lastWordPredictionPrefix = storedPrefix;
+					suggestionOps.set(predictions);
+					suggestionOps.setBarVisible(true);
 				} else {
-					clearWordPredictions(bar);
+					isBarShowingWordPredictions = false;
+					lastWordPredictionPrefix = "";
+					suggestionOps.setBarVisible(false);
+					suggestionOps.set(null);
 				}
 			}),
 			mLanguage,
 			prefixLower,
-			3
+			8
 		);
 	}
 
@@ -388,6 +417,11 @@ abstract public class SuggestionHandler extends TypingHandler {
 
 
 	protected void clearWordPredictions() {
+		if (isBarShowingWordPredictions) {
+			isBarShowingWordPredictions = false;
+			suggestionOps.setBarVisible(false);
+			suggestionOps.set(null);
+		}
 		View bar = getWordPredictionsBar();
 		if (bar != null) clearWordPredictions(bar);
 	}
@@ -427,14 +461,16 @@ abstract public class SuggestionHandler extends TypingHandler {
 		String[] surrounding = textField.getSurroundingStringForAutoAssistance(settings, mInputMode);
 		String prefix = extractCurrentWord(surrounding[0]);
 
-		if (!prefix.isEmpty()) {
-			textField.deleteChars(mLanguage, prefix.length());
-		}
-
-		// Insert the word (mirroring suggestionOps.commitCurrent which runs before onAcceptSuggestionManually)
-		appHacks.setComposingText(matchPrefixCase(mLanguage, prefix, word));
+		textField.replacePrefix(prefix, matchPrefixCase(mLanguage, prefix, word));
 		textField.finishComposingText();
 
+		onAcceptSuggestionManually(word, KeyEvent.KEYCODE_ENTER);
+	}
+
+
+	protected void acceptWordPredictionWithPrefix(@NonNull String word, @NonNull String prefix) {
+		textField.replacePrefix(prefix, matchPrefixCase(mLanguage, prefix, word));
+		textField.finishComposingText();
 		onAcceptSuggestionManually(word, KeyEvent.KEYCODE_ENTER);
 	}
 

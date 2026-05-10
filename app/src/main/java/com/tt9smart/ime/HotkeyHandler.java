@@ -65,6 +65,17 @@ public abstract class HotkeyHandler extends CommandHandler {
 		suggestionOps.cancelDelayedAccept();
 		stopWaitingForSpaceTrimKey();
 
+		if (isBarShowingWordPredictions && !suggestionOps.isEmpty()) {
+			String word = suggestionOps.getCurrent();
+			String prefix = lastWordPredictionPrefix;
+			isBarShowingWordPredictions = false;
+			lastWordPredictionPrefix = "";
+			suggestionOps.setBarVisible(false);
+			suggestionOps.set(null);
+			acceptWordPredictionWithPrefix(word, prefix);
+			return true;
+		}
+
 		if (suggestionOps.containsOnlyGuesses()) {
 			onAcceptSuggestionManually(suggestionOps.acceptCurrent(), KeyEvent.KEYCODE_ENTER);
 			return true;
