@@ -102,6 +102,10 @@ class SettingsTyping extends SettingsPunctuation {
 		return inputMode != InputMode.MODE_ABC || showInAbc;
 	}
 
+	public boolean getShowEmojiSuggestions() {
+		return prefs.getBoolean("show_emoji_suggestions", true);
+	}
+
 	public boolean getWordEditing() {
 		return prefs.getBoolean("word_editing", false);
 	}

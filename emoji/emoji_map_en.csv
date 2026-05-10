@@ -1,0 +1,89 @@
+# Format: word,emoji1,emoji2,...
+# Keys use the accent-stripped (normalized) form.
+
+# Greetings
+hello,👋,😊
+hi,👋
+bye,👋
+
+# Thanks
+thanks,🙏,😊
+thank,🙏
+
+# Positive feelings
+super,👍,🔥
+excellent,👍,🔥
+perfect,👌,✅
+great,👍,🔥
+awesome,🤩,🔥
+bravo,👏,🎉
+congrats,🎉,👏
+cool,😎,👍
+nice,👌
+amazing,😮,🔥
+fantastic,🤩,🔥
+
+# Negative feelings
+sorry,😔,🙏
+sad,😢
+
+# Laughter
+haha,😂,😄
+lol,😂,😄
+hehe,😄
+
+# Love / Affection
+love,❤️,😍
+heart,❤️
+
+# Events / Occasions
+birthday,🎂,🎉,🥳
+christmas,🎄,🎅
+halloween,🎃,👻
+party,🎉,🥳
+champagne,🍾,🥂
+
+# Food / Drinks
+pizza,🍕
+burger,🍔
+coffee,☕
+beer,🍺
+wine,🍷
+
+# Sport / Activities
+football,⚽
+basketball,🏀
+tennis,🎾
+sport,💪
+gym,💪
+running,🏃
+
+# Weather / Nature
+sun,☀️
+rain,🌧️
+snow,❄️,☃️
+
+# Travel
+beach,🏖️
+sea,🌊,🏖️
+mountain,⛰️
+
+# Tech
+phone,📱
+computer,💻
+mail,📧
+email,📧
+
+# Misc
+money,💰
+ok,👌,✅
+yes,✅,👍
+no,❌,👎
+fire,🔥
+warning,⚠️
+urgent,🚨
+important,❗
+question,❓
+music,🎵,🎶
+movie,🎬
+work,💼

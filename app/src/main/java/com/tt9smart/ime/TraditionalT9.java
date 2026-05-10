@@ -184,6 +184,10 @@ public class TraditionalT9 extends PremiumHandler {
 			DictionaryLoader.autoLoad(this, settings, mLanguage);
 		}
 
+		if (settings.getShowEmojiSuggestions() && mLanguage != null) {
+			EmojiMap.downloadIfMissing(this, mLanguage.getLocale());
+		}
+
 		if (onAfterStartText.length() > 0) {
 			onText(onAfterStartText.toString(), false);
 			onAfterStartText.setLength(0);

@@ -1,0 +1,120 @@
+# Format: mot_sans_accent,emoji1,emoji2,...
+# Les clés sont en forme normalisée (sans accents) car la recherche est aussi normalisée.
+
+# Salutations
+bonjour,👋,😊
+bonsoir,🌙,👋
+salut,👋,😊
+ciao,👋
+aurevoir,👋
+
+# Remerciements
+merci,🙏,😊
+
+# Sentiments positifs
+super,👍,🔥
+excellent,👍,🔥
+parfait,👌,✅
+genial,🔥,👍
+bravo,👏,🎉
+felicitations,🎉,👏
+congrats,🎉,👏
+bien,👍
+cool,😎,👍
+top,👍,🔝
+nickel,👌
+magnifique,😍,✨
+incroyable,😮,🔥
+fantastique,🤩,🔥
+
+# Sentiments négatifs
+desole,😔,🙏
+sorry,😔,🙏
+dommage,😔
+triste,😢
+nul,👎
+mauvais,👎
+
+# Rires
+haha,😂,😄
+lol,😂,😄
+mdr,😂,😄
+ptdr,😂,🤣
+hihi,😄
+hehe,😄
+
+# Amour / Affection
+amour,❤️,😍
+bisous,😘,❤️
+bisou,😘,❤️
+coeur,❤️
+cheri,❤️,😘
+cherie,❤️,😘
+
+# Fêtes / Occasions
+anniversaire,🎂,🎉,🥳
+noel,🎄,🎅
+halloween,🎃,👻
+paques,🐣,🐰
+fete,🎉,🥳
+champagne,🍾,🥂
+
+# Nourriture / Boissons
+pizza,🍕
+burger,🍔
+cafe,☕
+coffee,☕
+biere,🍺
+vin,🍷
+manger,🍽️
+faim,🍽️,😋
+bon,👌,😋
+
+# Sport / Activités
+foot,⚽
+football,⚽
+basket,🏀
+tennis,🎾
+sport,💪
+gym,💪
+course,🏃
+running,🏃
+velo,🚴
+
+# Météo / Nature
+soleil,☀️
+pluie,🌧️
+neige,❄️,☃️
+chaud,🌞,🥵
+froid,❄️,🥶
+
+# Voyage
+vacances,🏖️,✈️
+voyage,✈️,🌍
+plage,🏖️
+mer,🌊,🏖️
+montagne,⛰️
+paris,🗼,🇫🇷
+
+# Tech
+telephone,📱
+ordinateur,💻
+mail,📧
+email,📧
+
+# Divers
+argent,💰
+ok,👌,✅
+oui,✅,👍
+non,❌,👎
+feu,🔥
+attention,⚠️
+urgent,🚨
+important,❗
+question,❓
+musique,🎵,🎶
+film,🎬
+dormir,😴,💤
+fatigue,😴,😓
+travail,💼,👔
+boulot,💼

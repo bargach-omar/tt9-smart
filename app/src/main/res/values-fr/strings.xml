@@ -43,6 +43,8 @@
 	<string name="pref_privacy_policy">Politique de confidentialité</string>
 	<string name="pref_quick_switch_language_summary">Appuyer sur la touche de langue passe automatiquement à la langue suivante au lieu d\'afficher une fenêtre contextuelle avec toutes les langues activées.</string>
 	<string name="pref_show_suggestions_abc_summary">Afficher les lettres possibles dans la barre de suggestions lorsqu’une touche est pressée.</string>
+	<string name="pref_show_emoji_suggestions">Suggestions d\’emoji</string>
+	<string name="pref_show_emoji_suggestions_summary">Afficher des emojis dans la barre de suggestions après avoir validé un mot.</string>
 	<string name="pref_status_icon">Icône d\'état</string>
 	<string name="pref_status_icon_summary">Afficher une icône lorsque la saisie au clavier est active</string>
 	<string name="pref_color_scheme_device_light">Clair du système</string>

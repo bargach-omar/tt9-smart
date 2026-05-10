@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.tt9smart.R;
 import com.tt9smart.db.DataStore;
@@ -22,12 +23,14 @@ import com.tt9smart.ime.modes.InputModeKind;
 import com.tt9smart.ui.UI;
 import com.tt9smart.util.Text;
 import com.tt9smart.util.TextTools;
+import com.tt9smart.util.TextFolding;
 import com.tt9smart.util.chars.Characters;
 import com.tt9smart.util.sys.Clipboard;
 
 abstract public class SuggestionHandler extends TypingHandler {
 	@Nullable private Handler suggestionHandler;
 	protected boolean isBarShowingWordPredictions = false;
+	protected boolean isBarShowingEmojiSuggestions = false;
 	protected String lastWordPredictionPrefix = "";
 
 
@@ -209,8 +212,9 @@ abstract public class SuggestionHandler extends TypingHandler {
 		int autoAcceptTimeout = mInputMode.getAutoAcceptTimeout();
 		if (settings.isMainLayoutSmartBar() && InputModeKind.isABC(mInputMode)) {
 			if (!suggestions.isEmpty()) {
-				// Character options are actively shown — exit predictions mode
+				// Character options are actively shown — exit predictions/emoji mode
 				isBarShowingWordPredictions = false;
+				isBarShowingEmojiSuggestions = false;
 				lastWordPredictionPrefix = "";
 				suggestionOps.set(suggestions, mInputMode.getRecommendedSuggestionIdx(), mInputMode.containsGeneratedSuggestions());
 				suggestionOps.setBarVisible(true);
@@ -219,7 +223,7 @@ abstract public class SuggestionHandler extends TypingHandler {
 				suggestionOps.set(suggestions, mInputMode.getRecommendedSuggestionIdx(), mInputMode.containsGeneratedSuggestions());
 				suggestionOps.setBarVisible(false);
 			}
-			// If predictions are showing and suggestions are empty, keep bar as-is
+			// If predictions/emojis are showing and suggestions are empty, keep bar as-is
 		} else {
 			suggestionOps.set(suggestions, mInputMode.getRecommendedSuggestionIdx(), mInputMode.containsGeneratedSuggestions());
 		}
@@ -366,6 +370,10 @@ abstract public class SuggestionHandler extends TypingHandler {
 		if (mLanguage == null) return;
 		String prefix = extractCurrentWord(textField.getStringBeforeCursorSync(50));
 		if (prefix.isEmpty()) {
+			if (isBarShowingEmojiSuggestions) {
+				// Keep emoji suggestions visible until user starts typing the next word
+				return;
+			}
 			if (isBarShowingWordPredictions) {
 				isBarShowingWordPredictions = false;
 				lastWordPredictionPrefix = "";
@@ -374,6 +382,8 @@ abstract public class SuggestionHandler extends TypingHandler {
 			}
 			return;
 		}
+		// User started typing the next word — clear any emoji suggestions
+		isBarShowingEmojiSuggestions = false;
 		final String storedPrefix = prefix;
 		final String prefixLower = prefix.toLowerCase(mLanguage.getLocale());
 		DataStore.getWordsByPrefix(
@@ -417,6 +427,7 @@ abstract public class SuggestionHandler extends TypingHandler {
 
 
 	protected void clearWordPredictions() {
+		isBarShowingEmojiSuggestions = false;
 		if (isBarShowingWordPredictions) {
 			isBarShowingWordPredictions = false;
 			suggestionOps.setBarVisible(false);
@@ -465,6 +476,7 @@ abstract public class SuggestionHandler extends TypingHandler {
 		textField.finishComposingText();
 
 		onAcceptSuggestionManually(word, KeyEvent.KEYCODE_ENTER);
+		maybeShowEmojiSuggestions(word);
 	}
 
 
@@ -472,6 +484,24 @@ abstract public class SuggestionHandler extends TypingHandler {
 		textField.replacePrefix(prefix, matchPrefixCase(mLanguage, prefix, word));
 		textField.finishComposingText();
 		onAcceptSuggestionManually(word, KeyEvent.KEYCODE_ENTER);
+		maybeShowEmojiSuggestions(word);
+	}
+
+
+	private void maybeShowEmojiSuggestions(@NonNull String word) {
+		if (!settings.getShowEmojiSuggestions() || mLanguage == null) return;
+		EmojiMap.load(this, mLanguage.getLocale());
+		String foldedWord = TextFolding.fold(word.toLowerCase(mLanguage.getLocale()));
+		List<String> emojis = EmojiMap.getEmojis(foldedWord);
+		if (emojis.isEmpty()) return;
+		final ArrayList<String> emojiList = new ArrayList<>(emojis);
+		// Defer so pending onUpdateSelection events from the acceptance are processed first
+		new Handler(Looper.getMainLooper()).post(() -> {
+			isBarShowingWordPredictions = true;
+			isBarShowingEmojiSuggestions = true;
+			suggestionOps.set(emojiList);
+			suggestionOps.setBarVisible(true);
+		});
 	}
 
 

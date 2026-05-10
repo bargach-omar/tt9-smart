@@ -228,6 +228,10 @@ abstract public class CommandHandler extends TextEditingHandler {
 			DictionaryLoader.autoLoad(this, settings, mLanguage);
 		}
 
+		if (settings.getShowEmojiSuggestions() && mLanguage != null) {
+			EmojiMap.downloadIfMissing(this, mLanguage.getLocale());
+		}
+
 		mindReader.setLanguage(mLanguage);
 
 		forceShowWindow();

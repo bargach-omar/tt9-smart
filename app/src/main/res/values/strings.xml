@@ -3,6 +3,7 @@
 	<string name="app_name" translatable="false">TT9 Smart</string>
 	<string name="app_name_short" translatable="false">TT9S</string>
 	<string name="dictionary_url" translatable="false">https://raw.githubusercontent.com/bargach-omar/tt9-smart/%1$s/downloads/%2$s</string>
+	<string name="emoji_map_url" translatable="false">https://raw.githubusercontent.com/bargach-omar/tt9-smart/master/emoji/emoji_map_%1$s.csv</string>
 	<string name="system_night_mode" translatable="false">n</string>
 
 	<string name="app_settings">TT9 Settings</string>
@@ -140,6 +141,8 @@
 	<string name="pref_quick_switch_language_summary">Pressing the Language key switches to the next language automatically, instead of showing a popup with all enabled languages.</string>
 	<string name="pref_show_suggestions_abc">Show Letter Suggestions</string>
 	<string name="pref_show_suggestions_abc_summary">Show possible letters in the suggestion bar when a key is pressed.</string>
+	<string name="pref_show_emoji_suggestions">Emoji Suggestions</string>
+	<string name="pref_show_emoji_suggestions_summary">Show relevant emojis in the suggestion bar after accepting a word.</string>
 	<string name="pref_status_icon">Status Icon</string>
 	<string name="pref_status_icon_summary">Show an icon when keyboard input is active.</string>
 	<string name="pref_suggestion_font_size">Suggestion Font Size</string>
